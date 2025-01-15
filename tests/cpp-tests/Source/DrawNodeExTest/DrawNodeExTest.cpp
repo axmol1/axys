@@ -522,7 +522,7 @@ void DrawNodeMorphTest_SolidPolygon::update(float dt)
 
         drawNodeExArray[n]->setDNScale(Vec2(0.5f, 0.5f));
         drawNodeExArray[n]->setIsConvex(false);
-        drawNodeExArray[n]->drawSolidPolygon(verticesObjMorph[n], segments, color[n], sliderValue[sliderType::Thickness], Color4B::YELLOW);
+        drawNodeExArray[n]->drawSolidPolygon(verticesObjMorph[n], segments, color[n], sliderValue[sliderType::Thickness], Color32::YELLOW);
         drawNodeExArray[n]->setIsConvex(false);
     }
 }
@@ -927,7 +927,7 @@ DrawNodeDrawOrderTest::DrawNodeDrawOrderTest()
 
     // Polygons
 
-    drawNodeEx->drawSolidRect(Vec2(50, 80), Vec2(400, 220), Color4B::GREEN);
+    drawNodeEx->drawSolidRect(Vec2(50, 80), Vec2(400, 220), Color32::GREEN);
 
 
 
@@ -945,7 +945,7 @@ DrawNodeDrawOrderTest::DrawNodeDrawOrderTest()
 
     // Polygons
 
-    drawNodeEx->drawSolidRect(Vec2(30, 80), Vec2(500, 180), Color4B::GRAY);
+    drawNodeEx->drawSolidRect(Vec2(30, 80), Vec2(500, 180), Color32::GRAY);
 
     initSliders();
     initRadioButtuns();
@@ -1011,7 +1011,7 @@ void DrawNodeThicknessTest::update(float dt)
         {135.250000f, 108.625000f}, {151.000000f, 124.125000f}, {90.500000f, 131.875000f},  {113.250000f, 120.875000f},
         {88.000000f, 116.875000f},  {106.000000f, 103.875000f}, {88.000000f, 97.875000f},
     };
-    drawNodeEx->drawPolygon(vertices24, sizeof(vertices24) / sizeof(vertices24[0]), Color4B::TRANSPARENT, sliderValue[sliderType::Thickness] / 2,
+    drawNodeEx->drawPolygon(vertices24, sizeof(vertices24) / sizeof(vertices24[0]), Color32::TRANSPARENT, sliderValue[sliderType::Thickness] / 2,
         Color::RED);
 
     // open random color poly
@@ -1566,13 +1566,13 @@ void DrawNodeMethodsTest::drawAll()
     {
         Vec2 vertices[5] = { {0.0f, 0.0f }, { 50.0f, 50.0f }, { 100.0f, 50.0f }, { 100.0f, 100.0f }, { 50.0f, 100.0f } };
         drawNodeEx->setDNPosition(Vec2(-200, -300));
-        drawNodeEx->drawPoly(vertices, 5, false, Color4B::BLUE, sliderValue[sliderType::Thickness]);
+        drawNodeEx->drawPoly(vertices, 5, false, Color32::BLUE, sliderValue[sliderType::Thickness]);
 
         Vec2 vertices2[3] = { {30.0f, 130.0f}, {30.0f, 230.0f}, {50.0f, 200.0f} };
-        drawNodeEx->drawPoly(vertices2, 3, true, Color4B::GREEN, sliderValue[sliderType::Thickness]);
+        drawNodeEx->drawPoly(vertices2, 3, true, Color32::GREEN, sliderValue[sliderType::Thickness]);
 
         drawNodeEx->resetDNValues();
-        drawNodeEx->drawPoly(vertices1, sizeof(vertices1) / sizeof(vertices1[0]), true, Color4B::RED, sliderValue[sliderType::Thickness]);
+        drawNodeEx->drawPoly(vertices1, sizeof(vertices1) / sizeof(vertices1[0]), true, Color32::RED, sliderValue[sliderType::Thickness]);
 
         drawNodeEx->setDNPosition(Vec2(0, -300));
         drawNodeEx->setDNRotation(sliderValue[sliderType::Rotation]);
@@ -2125,7 +2125,7 @@ void DrawNodeDrawInWrongOrder_Issue1888::update(float dt)
 
     drawNodeEx->clear();
 
-    drawNodeEx->drawLine(Vec2(20, 140), Vec2(450, 110), Color4B::RED, 20.0f);
+    drawNodeEx->drawLine(Vec2(20, 140), Vec2(450, 110), Color32::RED, 20.0f);
 
     Vec2 position1[] = {
         {60 + AXRANDOM_0_1() * VisibleRect::rightTop().x, 60 + AXRANDOM_0_1() * VisibleRect::rightTop().y},
@@ -2134,14 +2134,14 @@ void DrawNodeDrawInWrongOrder_Issue1888::update(float dt)
         {70 + AXRANDOM_0_1() * VisibleRect::rightTop().x, 70 + AXRANDOM_0_1() * VisibleRect::rightTop().y} };
     drawNodeEx->drawPoints(position1, 4, 10, Color(AXRANDOM_0_1(), AXRANDOM_0_1(), AXRANDOM_0_1(), 1));
 
-    drawNodeEx->drawSolidRect(Vec2(250, 80), Vec2(400, 220), Color4B::YELLOW);
+    drawNodeEx->drawSolidRect(Vec2(250, 80), Vec2(400, 220), Color32::YELLOW);
     for (int i = 0; i < 100; i++)
     {
         drawNodeEx->drawPoint(Vec2(i * 7.0f, 120.0f), (float)i / 5 + 1,
             Color(AXRANDOM_0_1(), AXRANDOM_0_1(), AXRANDOM_0_1(), 1.0f));
     }
-    drawNodeEx->drawLine(Vec2(20, 100), Vec2(450, 220), Color4B::GREEN, 8.0f);
-    drawNodeEx->drawLine(Vec2(200, 100), Vec2(450, 250), Color4B::BLUE, 6.0f);
+    drawNodeEx->drawLine(Vec2(20, 100), Vec2(450, 220), Color32::GREEN, 8.0f);
+    drawNodeEx->drawLine(Vec2(200, 100), Vec2(450, 250), Color32::BLUE, 6.0f);
 
 #if defined(DRAWNODE_DRAW_LINE_POINT)
     drawNodeEx->_drawOrder = true;
@@ -2645,7 +2645,7 @@ DrawNodeIssueTester::DrawNodeIssueTester()
         y += thick + 1;
         drawNodeEx->drawLine(Vec2(140, y), Vec2(180, y), Color(AXRANDOM_0_1(), AXRANDOM_0_1(), AXRANDOM_0_1(), 1.0f), thick);
     }
-    drawNodeEx->drawPie(Vec2(-220, 150), 20, 0, 100, 300, 1, 1, Color4B::TRANSPARENT, Color4B::BLUE, DrawNodeEx::DrawMode::Line, 10);
+    drawNodeEx->drawPie(Vec2(-220, 150), 20, 0, 100, 300, 1, 1, Color32::TRANSPARENT, Color32::BLUE, DrawNodeEx::DrawMode::Line, 10);
 
     drawNodeEx->setDNPosition(Vec2(50, -100));
     for (int i = 2; i < 30; i++)
@@ -2827,9 +2827,9 @@ void CandyMixEeffect::rotozoom()
     float t = timer.GetMilliseconds() * 0.001;
 
     int c = (1 + sin(t * 2)) * 127;
-    Color4B cc = Color4B(c, 255 - c, 32, 32);
+    Color32 cc = Color32(c, 255 - c, 32, 32);
 
-    Color4B color;
+    Color32 color;
 
     int o = 0;
     for (int py = 0; py < HEIGHT; py++)
@@ -2842,7 +2842,7 @@ void CandyMixEeffect::rotozoom()
             float v = (x * sinAngle + y * cosAngle) * 0.01;
             if ((int(u * v) & 1) == 0)
             {
-                color = Color4B(255, 255, 255, 255);
+                color = Color32(255, 255, 255, 255);
             }
             else if ((int(u * v) & 25) == 0)
             {

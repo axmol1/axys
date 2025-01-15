@@ -54362,9 +54362,9 @@ int lua_ax_base_Label_setTextColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:setTextColor");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:setTextColor");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_Label_setTextColor'", nullptr);
@@ -54418,7 +54418,7 @@ int lua_ax_base_Label_getTextColor(lua_State* tolua_S)
             return 0;
         }
         auto&& ret = cobj->getTextColor();
-        color4b_to_luaval(tolua_S, ret);
+        color32_to_luaval(tolua_S, ret);
         return 1;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ax.Label:getTextColor",argc, 0);
@@ -54470,9 +54470,9 @@ int lua_ax_base_Label_enableShadow(lua_State* tolua_S)
     }
     if (argc == 1) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableShadow");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableShadow");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_Label_enableShadow'", nullptr);
@@ -54484,10 +54484,10 @@ int lua_ax_base_Label_enableShadow(lua_State* tolua_S)
     }
     if (argc == 2) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
         ax::Vec2 arg1;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableShadow");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableShadow");
 
         ok &= luaval_to_vec2(tolua_S, 3, &arg1, "ax.Label:enableShadow");
         if(!ok)
@@ -54501,11 +54501,11 @@ int lua_ax_base_Label_enableShadow(lua_State* tolua_S)
     }
     if (argc == 3) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
         ax::Vec2 arg1;
         int arg2;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableShadow");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableShadow");
 
         ok &= luaval_to_vec2(tolua_S, 3, &arg1, "ax.Label:enableShadow");
 
@@ -54557,9 +54557,9 @@ int lua_ax_base_Label_enableOutline(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableOutline");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableOutline");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_Label_enableOutline'", nullptr);
@@ -54571,10 +54571,10 @@ int lua_ax_base_Label_enableOutline(lua_State* tolua_S)
     }
     if (argc == 2) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
         int arg1;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableOutline");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableOutline");
 
         ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1, "ax.Label:enableOutline");
         if(!ok)
@@ -54624,9 +54624,9 @@ int lua_ax_base_Label_enableGlow(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1) 
     {
-        ax::Color4B arg0;
+        ax::Color32 arg0;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.Label:enableGlow");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.Label:enableGlow");
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_ax_base_Label_enableGlow'", nullptr);
@@ -60705,8 +60705,8 @@ int lua_ax_base_LayerColor_initWithColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     do{
         if (argc == 1) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerColor:initWithColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerColor:initWithColor");
 
             if (!ok) { break; }
             bool ret = cobj->initWithColor(arg0);
@@ -60717,8 +60717,8 @@ int lua_ax_base_LayerColor_initWithColor(lua_State* tolua_S)
     ok  = true;
     do{
         if (argc == 3) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerColor:initWithColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerColor:initWithColor");
 
             if (!ok) { break; }
             double arg1;
@@ -60763,8 +60763,8 @@ int lua_ax_base_LayerColor_create(lua_State* tolua_S)
     {
         if (argc == 3)
         {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerColor:create");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerColor:create");
             if (!ok) { break; }
             double arg1;
             ok &= luaval_to_number(tolua_S, 3,&arg1, "ax.LayerColor:create");
@@ -60792,8 +60792,8 @@ int lua_ax_base_LayerColor_create(lua_State* tolua_S)
     {
         if (argc == 1)
         {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerColor:create");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerColor:create");
             if (!ok) { break; }
             ax::LayerColor* ret = ax::LayerColor::create(arg0);
             object_to_luaval<ax::LayerColor>(tolua_S, "ax.LayerColor",(ax::LayerColor*)ret);
@@ -61476,12 +61476,12 @@ int lua_ax_base_LayerGradient_initWithColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     do{
         if (argc == 3) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerGradient:initWithColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerGradient:initWithColor");
 
             if (!ok) { break; }
-            ax::Color4B arg1;
-            ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerGradient:initWithColor");
+            ax::Color32 arg1;
+            ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerGradient:initWithColor");
 
             if (!ok) { break; }
             ax::Vec2 arg2;
@@ -61496,12 +61496,12 @@ int lua_ax_base_LayerGradient_initWithColor(lua_State* tolua_S)
     ok  = true;
     do{
         if (argc == 2) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerGradient:initWithColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerGradient:initWithColor");
 
             if (!ok) { break; }
-            ax::Color4B arg1;
-            ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerGradient:initWithColor");
+            ax::Color32 arg1;
+            ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerGradient:initWithColor");
 
             if (!ok) { break; }
             bool ret = cobj->initWithColor(arg0, arg1);
@@ -61538,11 +61538,11 @@ int lua_ax_base_LayerGradient_create(lua_State* tolua_S)
     {
         if (argc == 2)
         {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerGradient:create");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerGradient:create");
             if (!ok) { break; }
-            ax::Color4B arg1;
-            ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerGradient:create");
+            ax::Color32 arg1;
+            ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerGradient:create");
             if (!ok) { break; }
             ax::LayerGradient* ret = ax::LayerGradient::create(arg0, arg1);
             object_to_luaval<ax::LayerGradient>(tolua_S, "ax.LayerGradient",(ax::LayerGradient*)ret);
@@ -61564,11 +61564,11 @@ int lua_ax_base_LayerGradient_create(lua_State* tolua_S)
     {
         if (argc == 3)
         {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerGradient:create");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerGradient:create");
             if (!ok) { break; }
-            ax::Color4B arg1;
-            ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerGradient:create");
+            ax::Color32 arg1;
+            ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerGradient:create");
             if (!ok) { break; }
             ax::Vec2 arg2;
             ok &= luaval_to_vec2(tolua_S, 4, &arg2, "ax.LayerGradient:create");
@@ -62166,8 +62166,8 @@ int lua_ax_base_LayerRadialGradient_setStartColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     do{
         if (argc == 1) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerRadialGradient:setStartColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerRadialGradient:setStartColor");
 
             if (!ok) { break; }
             cobj->setStartColor(arg0);
@@ -62232,7 +62232,7 @@ int lua_ax_base_LayerRadialGradient_getStartColor(lua_State* tolua_S)
             return 0;
         }
         auto&& ret = cobj->getStartColor();
-        color4b_to_luaval(tolua_S, ret);
+        color32_to_luaval(tolua_S, ret);
         return 1;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ax.LayerRadialGradient:getStartColor",argc, 0);
@@ -62315,8 +62315,8 @@ int lua_ax_base_LayerRadialGradient_setEndColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     do{
         if (argc == 1) {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerRadialGradient:setEndColor");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerRadialGradient:setEndColor");
 
             if (!ok) { break; }
             cobj->setEndColor(arg0);
@@ -62381,7 +62381,7 @@ int lua_ax_base_LayerRadialGradient_getEndColor(lua_State* tolua_S)
             return 0;
         }
         auto&& ret = cobj->getEndColor();
-        color4b_to_luaval(tolua_S, ret);
+        color32_to_luaval(tolua_S, ret);
         return 1;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "ax.LayerRadialGradient:getEndColor",argc, 0);
@@ -62566,15 +62566,15 @@ int lua_ax_base_LayerRadialGradient_initWithColor(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 5) 
     {
-        ax::Color4B arg0;
-        ax::Color4B arg1;
+        ax::Color32 arg0;
+        ax::Color32 arg1;
         double arg2;
         ax::Vec2 arg3;
         double arg4;
 
-        ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerRadialGradient:initWithColor");
+        ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerRadialGradient:initWithColor");
 
-        ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerRadialGradient:initWithColor");
+        ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerRadialGradient:initWithColor");
 
         ok &= luaval_to_number(tolua_S, 4,&arg2, "ax.LayerRadialGradient:initWithColor");
 
@@ -62628,11 +62628,11 @@ int lua_ax_base_LayerRadialGradient_create(lua_State* tolua_S)
     {
         if (argc == 5)
         {
-            ax::Color4B arg0;
-            ok &=luaval_to_color4b(tolua_S, 2, &arg0, "ax.LayerRadialGradient:create");
+            ax::Color32 arg0;
+            ok &=luaval_to_color32(tolua_S, 2, &arg0, "ax.LayerRadialGradient:create");
             if (!ok) { break; }
-            ax::Color4B arg1;
-            ok &=luaval_to_color4b(tolua_S, 3, &arg1, "ax.LayerRadialGradient:create");
+            ax::Color32 arg1;
+            ok &=luaval_to_color32(tolua_S, 3, &arg1, "ax.LayerRadialGradient:create");
             if (!ok) { break; }
             double arg2;
             ok &= luaval_to_number(tolua_S, 4,&arg2, "ax.LayerRadialGradient:create");
