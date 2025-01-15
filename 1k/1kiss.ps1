@@ -1494,9 +1494,8 @@ function setup_gclient() {
 }
 
 # preprocess methods:
-#   <param>-inputOptions</param> [CMAKE_OPTIONS]
-function preprocess_win([string[]]$inputOptions) {
-    $outputOptions = $inputOptions
+function preprocess_win() {
+    $outputOptions = @()
 
     if ($options.sdk) {
         $outputOptions += "-DCMAKE_SYSTEM_VERSION=$($options.sdk)"
@@ -1551,21 +1550,22 @@ function preprocess_win([string[]]$inputOptions) {
         # Generate mingw
         $Script:cmake_generator = 'Ninja Multi-Config'
     }
-    return $outputOptions
+    # refer: https://devblogs.microsoft.com/powershell/array-literals-in-powershell
+    return ,$outputOptions
 }
 
-function preprocess_linux([string[]]$inputOptions) {
-    $outputOptions = $inputOptions
+function preprocess_linux() {
+    $outputOptions = @()
     if ($Global:is_clang) {
         $outputOptions += '-DCMAKE_C_COMPILER=clang', '-DCMAKE_CXX_COMPILER=clang++'
     }
-    return $outputOptions
+    return ,$outputOptions
 }
 
 $ninja_prog = $null
 $is_gradlew = $options.xt.Contains('gradlew')
-function preprocess_andorid([string[]]$inputOptions) {
-    $outputOptions = $inputOptions
+function preprocess_andorid() {
+    $outputOptions = @()
 
     $t_archs = @{arm64 = 'arm64-v8a'; armv7 = 'armeabi-v7a'; x64 = 'x86_64'; x86 = 'x86'; }
 
@@ -1605,11 +1605,11 @@ function preprocess_andorid([string[]]$inputOptions) {
         $outputOptions += '-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER'
     }
 
-    return $outputOptions
+    return ,$outputOptions
 }
 
-function preprocess_osx([string[]]$inputOptions) {
-    $outputOptions = $inputOptions
+function preprocess_osx() {
+    $outputOptions = @()
     $arch = $options.a
     if ($arch -eq 'x64') {
         $arch = 'x86_64'
@@ -1619,12 +1619,12 @@ function preprocess_osx([string[]]$inputOptions) {
     if ($Global:target_minsdk) {
         $outputOptions += "-DCMAKE_OSX_DEPLOYMENT_TARGET=$Global:target_minsdk"
     }
-    return $outputOptions
+    return ,$outputOptions
 }
 
 # build ios famliy (ios,tvos,watchos)
-function preprocess_ios([string[]]$inputOptions) {
-    $outputOptions = $inputOptions
+function preprocess_ios() {
+    $outputOptions = @()
     $arch = $options.a
     if ($arch -eq 'x64') {
         $arch = 'x86_64'
@@ -1642,12 +1642,11 @@ function preprocess_ios([string[]]$inputOptions) {
             $outputOptions += '-DSIMULATOR=TRUE'
         }
     }
-    return $outputOptions
+    return ,$outputOptions
 }
 
-function preprocess_wasm([string[]]$inputOptions) {
-    if ($options.p -eq 'wasm64') { $inputOptions += '-DCMAKE_C_FLAGS="-Wno-experimental -sMEMORY64"', '-DCMAKE_CXX_FLAGS="-Wno-experimental -sMEMORY64"', '-DEMSCRIPTEN_SYSTEM_PROCESSOR=x86_64' }
-    return $inputOptions
+function preprocess_wasm() {
+    return ,@()
 }
 
 function validHostAndToolchain() {
@@ -1696,7 +1695,7 @@ function validHostAndToolchain() {
     }
 }
 
-$proprocessTable = @{
+$preprocessTable = @{
     'win32'   = ${function:preprocess_win};
     'winrt'   = ${function:preprocess_win};
     'linux'   = ${function:preprocess_linux};
@@ -1830,7 +1829,17 @@ if (!$setupOnly) {
         $1k.println("Building target $TARGET_OS on $HOST_OS_NAME with toolchain $TOOLCHAIN ...")
 
         # step1. preprocess cross make options
-        $CONFIG_ALL_OPTIONS = [array]$(& $proprocessTable[$TARGET_OS] -inputOptions @() )
+        $CONFIG_ALL_OPTIONS = & $preprocessTable[$TARGET_OS]
+
+        if (!$is_win_family) {
+            $cm_cflags = '-fPIC'
+            if ($TARGET_OS -eq 'wasm64') {
+                $cm_cflags += ' -sMEMORY64'
+                $CONFIG_ALL_OPTIONS += '-DEMSCRIPTEN_SYSTEM_PROCESSOR=x86_64', '-DCMAKE_CXX_FLAGS=-sMEMORY64'
+            }
+
+            $CONFIG_ALL_OPTIONS += "-DCMAKE_C_FLAGS=$cm_cflags"
+        }
 
         if (!$CONFIG_ALL_OPTIONS) {
             $CONFIG_ALL_OPTIONS = @()
